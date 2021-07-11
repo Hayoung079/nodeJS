@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "start": "node src/main.js",
     "test": "echo \"Hello World!\"",
     "debug": "node src/main.js"
   },

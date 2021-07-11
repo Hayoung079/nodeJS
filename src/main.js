@@ -1,21 +1,28 @@
 // @ts-check
-var numCounters = 0
 
-function getCounter() {
-  numCounters += 1
-
-  var result = { count: count, total: 0 }
-  function count() {
-    result.total += 1
-  }
-  return result
+// Prototype
+function Person(name) {
+  this.name = name
 }
 
-var counterA = getCounter()
-counterA.count()
-counterA.count()
+Person.prototype.greet = function greet() {
+  return `Hi ${this.name}`
+}
 
-var counterB = getCounter()
-counterB.count()
+function Student(name) {
+  this.__proto__.constructor(name)
+}
 
-console.log(counterA.total, counterB.total, numCounters)
+Student.prototype.study = function study() {
+  return `${this.name} is studying`
+}
+
+Object.setPrototypeOf(Student.prototype, Person.prototype)
+
+const me = new Student('Hayoung')
+console.log(me instanceof Student)
+console.log(me instanceof Person)
+
+const anotherPerson = new Person(['foo'])
+console.log(anotherPerson instanceof Student)
+console.log(anotherPerson instanceof Person)
