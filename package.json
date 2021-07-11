@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "test": "echo \"Hello World!\""
+    "test": "echo \"Hello World!\"",
+    "debug": "node src/main.js"
   },
   "devDependencies": {
     "@types/node": "^16.3.1",
