@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "server": "nodemon src/toy1_blog/main.js",
     "start": "node src/main.js",
     "test": "echo \"Hello World!\"",
     "debug": "node src/main.js"
@@ -11,6 +12,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-node": "^11.1.0",
+    "nodemon": "^2.0.12",
     "prettier": "^2.3.2",
     "typescript": "^4.3.5"
   }
