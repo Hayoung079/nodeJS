@@ -13,7 +13,7 @@ const http = require('http')
 
 /**
  * @typedef Post
- * @property {number} id
+ * @property {string} id
  * @property {string} title
  * @property {string} content
  */
@@ -21,17 +21,17 @@ const http = require('http')
 /** @type {Post[]} */
 const posts = [
   {
-    id: 1,
+    id: 'first',
     title: 'My first post',
     content: '안녕',
   },
   {
-    id: 2,
+    id: 'second',
     title: 'My second post',
     content: '나의 두번째 포스트',
   },
   {
-    id: 3,
+    id: 'third',
     title: 'My third post',
     content: 'Bye',
   },
@@ -63,9 +63,9 @@ const server = http.createServer((req, res) => {
     res.statusCode = 200
     res.setHeader('Content-Type', 'application/json; encoding=utf-8')
     res.end(JSON.stringify(result))
-  } else if (postIdRegexResult) {
+  } else if (postIdRegexResult && req.method === 'GET') {
     // GET /posts/:id : 포스트 보기
-    const postId = JSON.parse(postIdRegexResult[1])
+    const postId = postIdRegexResult[1]
     const post = posts.find((_post) => _post.id === postId)
 
     if (post) {
@@ -77,6 +77,25 @@ const server = http.createServer((req, res) => {
       res.end('Post not found')
     }
   } else if (req.url === '/posts' && req.method === 'POST') {
+    // POST /posts : 포스트 만들기
+    req.setEncoding('utf-8')
+    req.on('data', (data) => {
+      /**
+       * @typedef CreatePostBody
+       * @property {string} title
+       * @property {string} content
+       */
+
+      /** @type {CreatePostBody} */
+      const body = JSON.parse(data)
+      console.log(body)
+      posts.push({
+        id: body.title.toLowerCase().replace(/\s/g, '_'),
+        title: body.title,
+        content: body.content,
+      })
+    })
+
     res.statusCode = 200
     res.end('Creating post')
   } else {
