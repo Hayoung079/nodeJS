@@ -1,7 +1,7 @@
 {
   "scripts": {
     "server": "nodemon src/toy1_blog/main.js",
-    "start": "node src/main.js",
+    "start": "node src/node/main.js",
     "test": "echo \"Hello World!\"",
     "debug": "node src/main.js"
   },
