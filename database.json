@@ -1,0 +1,12 @@
+{
+  "posts": [
+    { "id": "first", "title": "My first post", "content": "안녕" },
+    {
+      "id": "second",
+      "title": "My second post",
+      "content": "나의 두번째 포스트"
+    },
+    { "id": "third", "title": "My third post", "content": "잘가" },
+    { "id": "hello", "title": "hello", "content": "안녕하세요" }
+  ]
+}
